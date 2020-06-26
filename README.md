@@ -1,7 +1,7 @@
 # My Data Diary
 
 ## Goals
-1. Upload data from various sources (RescueTime, Fitbit, aTimeLogger etc)
+1. Automatically upload data from various sources through APIs (RescueTime, Fitbit, aTimeLogger etc)
 2. Visualize data in an meaningful manner
 3. Change behavior
 4. Maintain a timecapsule of my life
@@ -9,7 +9,7 @@
 
 
 ## Motivation
-I used to actively journal when I was a kid. Those entries are a timecapsule of my life, those memories would have mostly been forgotten had I no record of them. That is the motivation for this project, a more automated and perhaps more objective approach to journaling - for me and for anyone else who wants to use my templates. 
+I used to actively journal when I was a kid. Those entries are a timecapsule of my life; those memories would have mostly been forgotten had I no record of them. That is the motivation for this project, a more automated and perhaps more objective approach to journaling - for me and for anyone else who wants to use my templates. 
 
 I often believe I spent x time on something or didn't do y, but my data can tell me otherwise. It's through the **active** process of revisiting my data and idenitifying anomolies and finding interesting patterns, that I am able to tell a more cohesive story about different periods of my life and perhaps even make some changes in behavior. It's also helped me realize how finite time truly is.
 
