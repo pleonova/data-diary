@@ -22,9 +22,9 @@ I often believe I spent x time on something or didn't do y, but my data can tell
 - Lots of charts!
 
 ## Related Posts
-- June 29, 2020: Makery - External Article Mention -[Open Source Body: Small data, self-research, open humans](https://www.makery.info/en/2020/06/29/open-source-body-small-data-self-research-open-humans/)
+- June 29, 2020: Makery - External Article Mention - [Open Source Body: Small data, self-research, open humans](https://www.makery.info/en/2020/06/29/open-source-body-small-data-self-research-open-humans/)
 - June 24, 2020: OpenHumans - Python Code - [RescueTime Integrated Notebook](https://exploratory.openhumans.org/notebook/161/)
-- June 16, 2020: Quantified Self - Slides - [Impact of sheltering-in-place on me](https://docs.google.com/presentation/d/18iMgvHUPvdCHqEDE6oVgQ54_x5wOM0_vIWGZxnDz4Yo/edit#slide=id.p) *Recording coming soon*
+- June 16, 2020: Quantified Self - Slides - [Impact of sheltering-in-place had on me](https://docs.google.com/presentation/d/18iMgvHUPvdCHqEDE6oVgQ54_x5wOM0_vIWGZxnDz4Yo/edit#slide=id.p) *Recording coming soon*
 - May 16, 2020: My Site - Blog Post - [How has my life changed since shelter-in-place (in charts)?](https://pleonova.github.io/shelter-in-place/)
 - Feb 15, 2020: OpenHumans - Self Research Post - [Where did my time go? Expectations vs Reality](https://forums.openhumans.org/t/where-did-my-time-go-expectations-vs-reality/243)
 - Feb 14, 2020: OpenHumans - Self Research Post - [How do you learn X?](https://forums.openhumans.org/t/how-do-you-learn-x/231)
