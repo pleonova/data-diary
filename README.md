@@ -23,11 +23,18 @@ I often believe I spent x time on something or didn't do y, but my data can tell
 
 ## Related Posts
 - June 24, 2020: OpenHumans - Python Code - [RescueTime Integrated Notebook](https://exploratory.openhumans.org/notebook/161/)
-- June 16, 2020: Quantified Self - Slides - [Impact sheltering-in-place had on me](https://docs.google.com/presentation/d/18iMgvHUPvdCHqEDE6oVgQ54_x5wOM0_vIWGZxnDz4Yo/edit#slide=id.p) *Recording coming soon*
+- June 16, 2020: Quantified Self - Show&Tell Slides - [Impact sheltering-in-place had on me](https://docs.google.com/presentation/d/18iMgvHUPvdCHqEDE6oVgQ54_x5wOM0_vIWGZxnDz4Yo/edit#slide=id.p) *Recording coming soon*
 - May 16, 2020: My Site - Blog Post - [How has my life changed since shelter-in-place (in charts)?](https://pleonova.github.io/shelter-in-place/)
 - Feb 15, 2020: OpenHumans - Self Research Post - [Where did my time go? Expectations vs Reality](https://forums.openhumans.org/t/where-did-my-time-go-expectations-vs-reality/243)
 - Feb 14, 2020: OpenHumans - Self Research Post - [How do you learn X?](https://forums.openhumans.org/t/how-do-you-learn-x/231)
 - June 10, 2017: Product School/San Jose University - Invited Speaker - [Presentation](https://pleonova.github.io/visualization-tableau/) on [My Data Dashboards in Tableau](https://public.tableau.com/profile/paula#!/)
+
+## Mentions
+- June 29, 2020: Makery - External Article Mention - [Open Source Body: Small data, self-research, open humans](https://www.makery.info/en/2020/06/29/open-source-body-small-data-self-research-open-humans/)
+- June 15, 2020: Tzovar.as - External Blog Mention - [The effects the COVID-19 lockdown had on me](https://tzovar.as/lockdown-effects/)
+<br /><br />
+*Thank you to those who took a look at my project and found it interesting enough to mention.*
+
 
 ## Sample Visualizations
 
@@ -57,13 +64,6 @@ Differences between the two time periods.
 - [ ] Move more of data prep steps into a separate .py file
 
 *If anyone has suggestions for the above steps, especially the GPS one, I would greatly appreciate your input!*
-
-## Mentions
-- June 29, 2020: Makery - External Article Mention - [Open Source Body: Small data, self-research, open humans](https://www.makery.info/en/2020/06/29/open-source-body-small-data-self-research-open-humans/)
-- June 15, 2020: Tzovar.as - External Blog Mention - [The effects the COVID-19 lockdown had on me](https://tzovar.as/lockdown-effects/)
-<br /><br />
-*Thank you to those who took a look at my project and found it interesting enough to mention.*
-
 
 ## Acknowledgements
 I wanted to speficially thank those who had documented/shared with me their API syntax for extracting data:
