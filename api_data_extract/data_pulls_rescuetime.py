@@ -27,7 +27,7 @@ def get_activities(url, start_date, end_date, period,  level):
     d2 = pd.to_datetime(payload['restrict_end'])
 
     delta = d2 - d1
-    
+     
     activities_list = []
         
     # Iterate through the days, making a request per day
