@@ -11,8 +11,35 @@ import random
 
 ############ Data Munging ############
 def time_dataframe_prep(df, start_date, end_date, start_date_column, end_date_column, category_column):
+    """    
+    Returns an exploded dataframe, with every minute labeled with the event name or 'no entry'.
     
+    Parameters
+    ----------
+        df : dataframe
+            A dataframe that contains tagged timstamps
+        start_date : str
+            Date of first entry 
+        end_date :str 
+            Date of last entry
+        start_date_column : datetime
+            Column that contains when the event started
+        end_date_column : datetime 
+            Column that contains when the event ended
+        category_column : str
+            Column that contains the event tag name
+
+    
+    Returns
+    -------
+        df_minutes_se : dataframe
+            Table with every minute tagged
+    
+    
+    """
+    ########################    
     ## Step 1: Create a dataframe of just the end dates
+    ########################
     df_end = df[[end_date_column]].copy()
     # Add a column for 'no entry'
     df_end[category_column] = 'no entry'
@@ -22,51 +49,65 @@ def time_dataframe_prep(df, start_date, end_date, start_date_column, end_date_co
     start_date_pt_list = list(df[start_date_column].unique())
     df_end = df_end[~df_end[end_date_column].isin(start_date_pt_list)]
 
-    
-    ## Step 2: Combine End and Start Dates into single column
+    ########################
+    ## Step 2: Combine End and Start Dates into single dataframe
+    ########################
     # Create a two column data frame with the start date and the category
     df_start = df[[start_date_column, category_column]].copy()
 
-    ## Step 2.5: 
     # Update column names to match that of df_start
     df_end.rename(columns = {end_date_column: start_date_column}, inplace = True)
     # Append the df_end dataframe to the bottom
     df_entries = pd.concat([df_start, df_end])
 
+    ########################
     ## Step 3: Expand Dataset - Every Second
+    ########################
     # Create a dataframe of second intevals between two dates   
     time_range = pd.date_range(start_date, end_date, freq= '1s')
     time_range_df = pd.DataFrame(time_range).rename(columns = {0: 'date_time'})
     # Convert to time
     time_range_df['date_time'] = pd.to_datetime(time_range_df['date_time'])
-
+    
+    ########################
     ## Step 4: Add our time stamps to the expanded time dataframe
+    ########################
     df_seconds = pd.merge(time_range_df, df_entries, how = 'left',  
-                          left_on = 'date_time', right_on = start_date_column)
+                      left_on = 'date_time', right_on = start_date_column)
     # Find the first date_time with a category entry
-    date_of_first_entry = df_seconds[(df_seconds[category_column] != 'no entry')  & (~df_seconds[category_column].isna())  ]['date_time'].min()
+    date_of_first_entry = df_seconds[(df_seconds[category_column] != 'no entry')  
+                                     & (~df_seconds[category_column].isna())  
+                                    ]['date_time'].min()
     # Find the index of the first entry
     index_of_first_entry = df_seconds.index[df_seconds['date_time'] == date_of_first_entry][0]
     # Reduce the dataframe to begin with the first entry
     df_seconds2 = df_seconds[index_of_first_entry:].copy()
     
+    ########################
     ## Step 5: Label every minute
+    ########################
     # Forward fill the category until next entry
     df_seconds2[category_column] = df_seconds2[category_column].ffill()
     df_seconds2[start_date_column] = df_seconds2[start_date_column].ffill()
 
+    ########################
     ## Step 6: Pick the end of a minute entry (at 58 seconds)
+    ########################
     # Expand the time stamp into the relevant time components
-    df_seconds2[['hour','minute','second']] = pd.to_timedelta(
-        df_seconds2['date_time']).dt.components.iloc[:, 1:4]
+    
+    # df_seconds2[['hour','minute','second']] = pd.to_timedelta(
+    #     df_seconds2['date_time']).dt.components.iloc[:, 1:4]
+    df_seconds2['hour'] = df_seconds2['date_time'].dt.hour
+    df_seconds2['minute'] = df_seconds2['date_time'].dt.minute
+    df_seconds2['second'] = df_seconds2['date_time'].dt.second
 
     # Select the entries at specified second interval (otherwise the frequency is too much for the chart)
     df_minutes = df_seconds2[df_seconds2['second'] == 58].reset_index()
     df_minutes['date_time_min'] = df_minutes['date_time'].values.astype('<M8[m]')
 
+    ########################
     ## Step 7: Add duration columns
-    # df_minutes['duration'] =  df_minutes['date_time'] - df_minutes[start_date_column] 
-    # df_minutes['duration_seconds'] = df_minutes['duration'].dt.total_seconds()
+    ########################
     df_minutes['duration_minutes'] = 1
 
     # Find the index of the latest entry
@@ -74,9 +115,9 @@ def time_dataframe_prep(df, start_date, end_date, start_date_column, end_date_co
     index_of_last_entry = df_minutes.index[df_minutes['date_time'] == latest_date][0]
 
     # Reduce the dataframe to begin with the first entry
-    df_minutes2 = df_minutes[0:index_of_last_entry].copy()
+    df_minutes_se = df_minutes[0:index_of_last_entry].copy()
 
-    return df_minutes2
+    return df_minutes_se
 
 
 import matplotlib.mlab as mlab
