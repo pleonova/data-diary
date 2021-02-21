@@ -279,8 +279,8 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
     # Remove the extra date at the front and end
     locs, labels = plt.xticks() 
     date_label_list = list(d['date_time'].dt.strftime('%b %-d, %a').unique())
-    plt.xticks(np.arange(locs[0], locs[0] + len(date_label_list) + 1, step =1), 
-        [""] + date_label_list + [""], 
+    plt.xticks(np.arange(locs[0] - 1, locs[0] + len(date_label_list) + 1, step =1), 
+        [""] + [""] + date_label_list, 
         rotation=90)
 
     if turn_xaxis_on == False:
