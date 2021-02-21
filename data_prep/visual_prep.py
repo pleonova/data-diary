@@ -249,13 +249,16 @@ def create_chart_xy_components(d, date_time_column, start_date, end_date, catego
 
 def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_palette, 
     add_reference_lines, top_line, bottom_line, 
-    legend_on, turn_xaxis_on):
+    legend_on, turn_xaxis_on,
+    new_yaxis_labels = False,
+    new_ref_line_text = False
+):
     
     plt.style.use('fivethirtyeight')
 
-    v_val= 0
-    h_val= 200
-    verts = list(zip([-h_val,h_val,h_val,-h_val],[-v_val,-v_val,v_val,v_val]))
+    v_val	= 0
+    h_val	= 200
+    verts	= list(zip([-h_val,h_val,h_val,-h_val],[-v_val,-v_val,v_val,v_val]))
 
     fig, ax = plt.subplots()
 
@@ -266,7 +269,10 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
                     c = color_palette[i],
                     marker = (verts),
                 )
-    plt.yticks(np.arange(0, 25, step=6)) 
+    plt.yticks(np.arange(0, 25, step=6))
+    if new_yaxis_labels:
+    	plt.yticks(np.arange(0, 25, step=6), new_yaxis_labels) 
+
 
     xstart = d['Date Abr'].min() - pd.DateOffset(days=1)
     xend = d['Date Abr'].max() + pd.DateOffset(days=1)
@@ -288,7 +294,7 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
 
 
     if legend_on == True:
-        leg = plt.legend(category_list_names_ordered, bbox_to_anchor=(1.15,0.5), 
+        leg = plt.legend(category_list_names_ordered, bbox_to_anchor=(1.18,0.5), 
                    loc="center", title = (r"$\bf{" + category_column + "}$"), fancybox=True)
 
         for i in leg.legendHandles:
@@ -306,13 +312,23 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
 
     ## Reference Lines
     if add_reference_lines == True:
-        plt.axhline(y=top_line, linewidth=2, color='black', linestyle = '--')
-        top_line_text = '  Start: {}'.format(top_line)
-        plt.text(x=xend, y=top_line, s=top_line_text, alpha=0.7, color='#334f8d')
 
-        bottom_line_text = '  End: {}'.format(bottom_line)
-        plt.axhline(y=bottom_line, linewidth=2, color='black', linestyle = '--')
-        plt.text(x=xend, y=bottom_line, s=bottom_line_text, alpha=0.7, color='#334f8d')
+        # top_line_text = '  Start: {}'.format(top_line)
+        # bottom_line_text = '  End: {}'.format(bottom_line)
+        # Alternative titles
+    	if new_ref_line_text:
+    		top_line_text = new_ref_line_text[0]
+    		bottom_line_text = new_ref_line_text[1]
+    	else:
+    		top_line_text = '  Start: {}'.format(top_line)
+    		bottom_line_text = '  End: {}'.format(bottom_line)
+
+    	plt.axhline(y=top_line, linewidth=2, color='black', linestyle = '--')
+    	plt.text(x=xend, y=top_line, s=top_line_text, alpha=0.7, color='#334f8d')
+    	plt.axhline(y=bottom_line, linewidth=2, color='black', linestyle = '--')
+    	plt.text(x=xend, y=bottom_line, s=bottom_line_text, alpha=0.7, color='#334f8d')
+
+
 
     plt.show()
 
@@ -358,9 +374,9 @@ def stacked_bar_chart_categories(pivot_data, color_pairs, legend_on, ymax, ystep
     # date_list.sort()
 
     # Categories and the matching colors
-    specified_category_entries = list(pivot_data.T.index)
-    cat_color_pairs_alt = {item: color_pairs.get(item) for item in specified_category_entries}
-    colors_alt = list(cat_color_pairs_alt.values())
+    specified_category_entries	= list(pivot_data.T.index)
+    cat_color_pairs_alt 		= {item: color_pairs.get(item) for item in specified_category_entries}
+    colors_alt 					= list(cat_color_pairs_alt.values())
 
     # Create x-axis names and tick positions
     objects = date_list
