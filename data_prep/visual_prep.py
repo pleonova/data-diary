@@ -125,23 +125,23 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(color_codes=True)
 
-# fsize = 18
-# params = {
-#     'axes.labelsize': fsize, 
-#     'axes.titlesize':fsize, 
-#     'axes.titlepad': 20,
-#     'xtick.labelsize':fsize,
-#     'xtick.major.pad': 5, 
-#     'ytick.labelsize':fsize,
-#     'axes.labelpad': 20,
-#     'lines.linewidth' : 3,
-#     'figure.titlesize': fsize *1.5,
-#     'figure.figsize' : (16,8),
-#     'legend.title_fontsize': fsize,
-#     'legend.fontsize': fsize #*0.925, 
-# } 
-# plt.rcParams.update(params) 
-# plt.close('all')
+fsize = 18
+params = {
+    'axes.labelsize': fsize, 
+    'axes.titlesize':fsize, 
+    'axes.titlepad': 20,
+    'xtick.labelsize':fsize,
+    'xtick.major.pad': 5, 
+    'ytick.labelsize':fsize,
+    'axes.labelpad': 20,
+    'lines.linewidth' : 3,
+    'figure.titlesize': fsize *1.5,
+    'figure.figsize' : (16,8),
+    'legend.title_fontsize': fsize,
+    'legend.fontsize': fsize #*0.925, 
+} 
+plt.rcParams.update(params) 
+plt.close('all')
 
 
 color_palette_p = [
@@ -173,7 +173,11 @@ my_color_schema = {'asleep': '#783f04ff',
                     'restless': '#ffccf2',
                     'awake': '#7fffd4',
                     'no entry': '#ffffff',
-                    'other': '#e8e8e8'}
+                    'other': '#e8e8e8',
+                    'project': '#05A9CA',
+                    'coursework': '#CBA54F'
+
+                    }
 my_color_categories = [key for (key, value) in sorted(my_color_schema.items())]                    
 my_color_palette = [value for (key, value) in sorted(my_color_schema.items())]
 
@@ -260,7 +264,7 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
                     d[d[category_column] == category_list_names_ordered[i]]['time_from_day_start'], 
                     s = 2000,
                     c = color_palette[i],
-                    marker = (verts, 0),
+                    marker = (verts),
                 )
     plt.yticks(np.arange(0, 25, step=6)) 
 
@@ -288,7 +292,7 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
                    loc="center", title = (r"$\bf{" + category_column + "}$"), fancybox=True)
 
         for i in leg.legendHandles:
-            i.set_linewidth(5)
+            i.set_linewidth(7)
     else:
         plt.legend('')
 
