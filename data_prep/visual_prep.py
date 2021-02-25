@@ -169,13 +169,26 @@ color_palette_p = [
 
 my_color_schema = {'asleep': '#783f04ff', 
                     'device': '#70a1f5', 
-                    'active': '#f1c232ff', 
+                    'active': '#f1c232ff',
+                    'movement': '#e58829', 
                     'restless': '#ffccf2',
-                    'awake': '#7fffd4',
+                    'awake': '#00ff3f', ##7fffd4',
                     'no entry': '#ffffff',
                     'other': '#e8e8e8',
                     'project': '#05A9CA',
-                    'coursework': '#CBA54F'
+                    'coursework': '#CBA54F',
+                    'Software Development': '#295ce5',
+                    'Communication & Scheduling': '#c87d93',
+                    'Utilities': '#66ff99',
+                    'Reference & Learning': '#66ccff',
+                    'Social Networking': '#22db35',
+                    'Entertainment': '#e52962',
+                    'Uncategorized': '#0b0a0a',
+                    'Design & Composition': '#b734f2',
+                    'Shopping': '#d4ea20',
+                    'News & Opinion': '#f9dfc9',
+                    'Business': '#4f9618',
+
 
                     }
 my_color_categories = [key for (key, value) in sorted(my_color_schema.items())]                    
@@ -265,7 +278,7 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
     for i in range(len(category_list_names_ordered)):
         plt.scatter(d[d[category_column] == category_list_names_ordered[i]]['Date Abr'], 
                     d[d[category_column] == category_list_names_ordered[i]]['time_from_day_start'], 
-                    s = 2000,
+                    s = 1800,
                     c = color_palette[i],
                     marker = (verts),
                 )
@@ -294,7 +307,7 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
 
 
     if legend_on == True:
-        leg = plt.legend(category_list_names_ordered, bbox_to_anchor=(1.18,0.5), 
+        leg = plt.legend(category_list_names_ordered, bbox_to_anchor=(1.11,0.5), 
                    loc="center", title = (r"$\bf{" + category_column + "}$"), fancybox=True)
 
         for i in leg.legendHandles:
@@ -313,8 +326,6 @@ def daily_chart_24_hours(d, category_column, category_list_names_ordered, color_
     ## Reference Lines
     if add_reference_lines == True:
 
-        # top_line_text = '  Start: {}'.format(top_line)
-        # bottom_line_text = '  End: {}'.format(bottom_line)
         # Alternative titles
     	if new_ref_line_text:
     		top_line_text = new_ref_line_text[0]
